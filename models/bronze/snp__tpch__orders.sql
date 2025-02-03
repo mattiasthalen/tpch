@@ -1,6 +1,10 @@
 MODEL (
-  kind INCREMENTAL_BY_UNIQUE_KEY (
-    unique_key _sqlmesh__hash_diff
+  kind SCD_TYPE_2_BY_COLUMN (
+    unique_key o_orderkey,
+    valid_from_name _sqlmesh__valid_from,
+    valid_to_name _sqlmesh__valid_to,
+    columns [_sqlmesh__hash_diff],
+    disable_restatement TRUE
   )
 );
 
