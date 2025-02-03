@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS customer;
-DROP TABLE IF EXISTS lineitem;
-DROP TABLE IF EXISTS nation;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS part;
-DROP TABLE IF EXISTS partsupp;
-DROP TABLE IF EXISTS region;
-DROP TABLE IF EXISTS supplier;
+DROP TABLE IF EXISTS main.customer;
+DROP TABLE IF EXISTS main.lineitem;
+DROP TABLE IF EXISTS main.nation;
+DROP TABLE IF EXISTS main.orders;
+DROP TABLE IF EXISTS main.part;
+DROP TABLE IF EXISTS main.partsupp;
+DROP TABLE IF EXISTS main.region;
+DROP TABLE IF EXISTS main.supplier;
 
 CALL dbgen(sf = 1);
