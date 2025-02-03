@@ -7,4 +7,4 @@ DROP TABLE IF EXISTS main.partsupp;
 DROP TABLE IF EXISTS main.region;
 DROP TABLE IF EXISTS main.supplier;
 
-CALL dbgen(sf = 10);
+CALL dbgen(sf = 1);
