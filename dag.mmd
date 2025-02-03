@@ -1,0 +1,56 @@
+flowchart LR
+    subgraph tpch.bronze["tpch.bronze"]
+        direction LR
+        snp__tpch__customers(["snp__tpch__customers"])
+        snp__tpch__line_items(["snp__tpch__line_items"])
+        snp__tpch__nations(["snp__tpch__nations"])
+        snp__tpch__orders(["snp__tpch__orders"])
+        snp__tpch__part_suppliers(["snp__tpch__part_suppliers"])
+        snp__tpch__parts(["snp__tpch__parts"])
+        snp__tpch__regions(["snp__tpch__regions"])
+        snp__tpch__suppliers(["snp__tpch__suppliers"])
+    end
+
+    subgraph tpch.silver["tpch.silver"]
+        direction LR
+        bag__tpch__customers(["bag__tpch__customers"])
+        bag__tpch__nations(["bag__tpch__nations"])
+        bag__tpch__order_line(["bag__tpch__order_line"])
+        bag__tpch__orders(["bag__tpch__orders"])
+        bag__tpch__part_suppliers(["bag__tpch__part_suppliers"])
+        bag__tpch__parts(["bag__tpch__parts"])
+        bag__tpch__regions(["bag__tpch__regions"])
+        bag__tpch__suppliers(["bag__tpch__suppliers"])
+    end
+
+    subgraph tpch.main["tpch.main"]
+        direction LR
+        customer(["customer"])
+        lineitem(["lineitem"])
+        nation(["nation"])
+        orders(["orders"])
+        part(["part"])
+        partsupp(["partsupp"])
+        region(["region"])
+        supplier(["supplier"])
+    end
+
+    %% tpch.bronze -> tpch.silver
+    snp__tpch__customers --> bag__tpch__customers
+    snp__tpch__line_items --> bag__tpch__order_line
+    snp__tpch__nations --> bag__tpch__nations
+    snp__tpch__orders --> bag__tpch__orders
+    snp__tpch__part_suppliers --> bag__tpch__part_suppliers
+    snp__tpch__parts --> bag__tpch__parts
+    snp__tpch__regions --> bag__tpch__regions
+    snp__tpch__suppliers --> bag__tpch__suppliers
+
+    %% tpch.main -> tpch.bronze
+    customer --> snp__tpch__customers
+    lineitem --> snp__tpch__line_items
+    nation --> snp__tpch__nations
+    orders --> snp__tpch__orders
+    part --> snp__tpch__parts
+    partsupp --> snp__tpch__part_suppliers
+    region --> snp__tpch__regions
+    supplier --> snp__tpch__suppliers
