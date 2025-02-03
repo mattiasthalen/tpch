@@ -1,7 +1,7 @@
 MODEL (
   kind INCREMENTAL_BY_TIME_RANGE (
     time_column bridge__loaded_at
-  ),
+  )
 );
 
 WITH suppliers AS (
