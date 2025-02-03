@@ -35,7 +35,10 @@ config = Config(
     gateways={
             "duckdb": GatewayConfig(
                 connection=DuckDBConnectionConfig(
-                    database="tpch.duckdb"
+                    database="tpch.duckdb",
+                    connector_config={
+                        "memory_limit":"100GB"
+                    }
                 )
             ),
         },
