@@ -27,7 +27,8 @@ WITH part_suppliers AS (
       bag__tpch__suppliers.supplier__valid_to,
       bag__tpch__nations.nation__valid_to,
       bag__tpch__regions.region__valid_to
-    ) AS bridge__valid_to
+    ) AS bridge__valid_to,
+    bridge__valid_to = '9999-12-31 23:59:59'::TIMESTAMP AS bridge__is_current
   FROM silver.bag__tpch__part_suppliers
   LEFT JOIN silver.bag__tpch__suppliers
     ON bag__tpch__part_suppliers._hook__supplier = bag__tpch__suppliers._hook__supplier
