@@ -35,6 +35,7 @@ flowchart LR
     subgraph tpch.gold["tpch.gold"]
         direction LR
         _bridge(["_bridge"])
+        calendar(["calendar"])
         customers(["customers"])
         line_items(["line_items"])
         nations(["nations"])
@@ -105,6 +106,7 @@ flowchart LR
     bag__tpch__regions --> regions
     bag__tpch__suppliers --> suppliers
     int__uss_bridge --> _bridge
+    int__uss_bridge --> calendar
 
     %% tpch.main -> tpch.bronze
     raw__tpch__customers --> snp__tpch__customers
