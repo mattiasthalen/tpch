@@ -12,7 +12,7 @@ FROM silver.int__uss_bridge__nations
 UNION ALL BY NAME
 SELECT
   *
-FROM silver.int__uss_bridge__order_lines
+FROM silver.int__uss_bridge__line_items
 UNION ALL BY NAME
 SELECT
   *

@@ -12,4 +12,4 @@ SELECT
   *,
   @generate_surrogate_key(COLUMNS(*)) AS _sqlmesh__hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh__loaded_at
-FROM main.part
+FROM main.raw__tpch__parts

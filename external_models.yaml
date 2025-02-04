@@ -1,4 +1,4 @@
-- name: '"tpch"."main"."customer"'
+- name: '"tpch"."main"."raw__tpch__customers"'
   columns:
     c_custkey: BIGINT
     c_name: TEXT
@@ -9,7 +9,7 @@
     c_mktsegment: TEXT
     c_comment: TEXT
   gateway: duckdb
-- name: '"tpch"."main"."lineitem"'
+- name: '"tpch"."main"."raw__tpch__line_items"'
   columns:
     l_orderkey: BIGINT
     l_partkey: BIGINT
@@ -28,14 +28,14 @@
     l_shipmode: TEXT
     l_comment: TEXT
   gateway: duckdb
-- name: '"tpch"."main"."nation"'
+- name: '"tpch"."main"."raw__tpch__nations"'
   columns:
     n_nationkey: INT
     n_name: TEXT
     n_regionkey: INT
     n_comment: TEXT
   gateway: duckdb
-- name: '"tpch"."main"."orders"'
+- name: '"tpch"."main"."raw__tpch__orders"'
   columns:
     o_orderkey: BIGINT
     o_custkey: BIGINT
@@ -47,7 +47,15 @@
     o_shippriority: INT
     o_comment: TEXT
   gateway: duckdb
-- name: '"tpch"."main"."part"'
+- name: '"tpch"."main"."raw__tpch__part_suppliers"'
+  columns:
+    ps_partkey: BIGINT
+    ps_suppkey: BIGINT
+    ps_availqty: BIGINT
+    ps_supplycost: DECIMAL(15, 2)
+    ps_comment: TEXT
+  gateway: duckdb
+- name: '"tpch"."main"."raw__tpch__parts"'
   columns:
     p_partkey: BIGINT
     p_name: TEXT
@@ -59,21 +67,13 @@
     p_retailprice: DECIMAL(15, 2)
     p_comment: TEXT
   gateway: duckdb
-- name: '"tpch"."main"."partsupp"'
-  columns:
-    ps_partkey: BIGINT
-    ps_suppkey: BIGINT
-    ps_availqty: BIGINT
-    ps_supplycost: DECIMAL(15, 2)
-    ps_comment: TEXT
-  gateway: duckdb
-- name: '"tpch"."main"."region"'
+- name: '"tpch"."main"."raw__tpch__regions"'
   columns:
     r_regionkey: INT
     r_name: TEXT
     r_comment: TEXT
   gateway: duckdb
-- name: '"tpch"."main"."supplier"'
+- name: '"tpch"."main"."raw__tpch__suppliers"'
   columns:
     s_suppkey: BIGINT
     s_name: TEXT
