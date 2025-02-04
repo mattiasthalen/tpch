@@ -11,7 +11,8 @@ WITH source AS (
   FROM bronze.snp__tpch__part_suppliers
 ), validity AS (
   SELECT
-  * EXCLUDE(_sqlmesh__valid_to),
+    *
+    EXCLUDE (_sqlmesh__valid_to),
     ROW_NUMBER() OVER (PARTITION BY ps_partsuppkey ORDER BY _sqlmesh__valid_from) AS _sqlmesh__version,
     COALESCE(_sqlmesh__valid_to, '9999-12-31 23:59:59'::TIMESTAMP) AS _sqlmesh__valid_to,
     _sqlmesh__valid_to = '9999-12-31 23:59:59'::TIMESTAMP AS _sqlmesh__is_current
