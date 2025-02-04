@@ -6,6 +6,7 @@ MODEL (
 
 WITH regions AS (
   SELECT
+    _hook__region,
     _pit_hook__region,
     region__loaded_at AS bridge__loaded_at,
     region__valid_from AS bridge__valid_from,

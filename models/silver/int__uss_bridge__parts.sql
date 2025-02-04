@@ -6,6 +6,7 @@ MODEL (
 
 WITH parts AS (
   SELECT
+    _hook__part,
     _pit_hook__part,
     part__loaded_at AS bridge__loaded_at,
     part__valid_from AS bridge__valid_from,
