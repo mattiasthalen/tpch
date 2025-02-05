@@ -13,4 +13,4 @@ SELECT
   *,
   @generate_surrogate_key(COLUMNS(*)) AS _sqlmesh__hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh__loaded_at
-FROM main.raw__tpch__line_items
+FROM bronze.raw__tpch__line_items

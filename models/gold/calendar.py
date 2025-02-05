@@ -205,6 +205,7 @@ def generate_calendar(df: pl.DataFrame, date_column: str) -> pl.DataFrame:
 
 @model(
     name='gold.calendar',
+    enabled=False,
     kind=dict(
         name=ModelKindName.FULL,
     ),
@@ -250,7 +251,7 @@ def execute(
         pl.col("list").list.len().alias("length"),
         pl.col("list").list.last().alias("value")
     ).with_columns(
-        pl.col("list").list.head(pl.col("length") - 1).list.join("|").alias("prefix")
+        pl.col("list").list.head(pl.col("length") - 1).cast(pl.List(pl.String)).list.join("|").alias("prefix")
     )
     
     prefix = source_df.item(0, "prefix")
