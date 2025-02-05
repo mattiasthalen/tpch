@@ -8,8 +8,8 @@ WITH suppliers AS (
   SELECT
     bag__tpch__suppliers._hook__supplier,
     bag__tpch__suppliers._pit_hook__supplier,
-    int__uss_bridge__nations._pit_hook__nation,
-    int__uss_bridge__nations._pit_hook__region,
+    int__uss_bridge__nations._pit_hook__nation AS _pit_hook__nation__supplier,
+    int__uss_bridge__nations._pit_hook__region AS _pit_hook__region__supplier,
     GREATEST(
       bag__tpch__suppliers.supplier__loaded_at,
       int__uss_bridge__nations.bridge__loaded_at

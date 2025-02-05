@@ -8,8 +8,8 @@ WITH customers AS (
   SELECT
     bag__tpch__customers._hook__customer,
     bag__tpch__customers._pit_hook__customer,
-    int__uss_bridge__nations._pit_hook__nation,
-    int__uss_bridge__nations._pit_hook__region,
+    int__uss_bridge__nations._pit_hook__nation AS _pit_hook__nation__customer,
+    int__uss_bridge__nations._pit_hook__region AS _pit_hook__region__customer,
     GREATEST(
       bag__tpch__customers.customer__loaded_at,
       int__uss_bridge__nations.bridge__loaded_at

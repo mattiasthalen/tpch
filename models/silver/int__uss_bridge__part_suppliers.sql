@@ -10,8 +10,8 @@ WITH part_suppliers AS (
     bag__tpch__part_suppliers._pit_hook__part_supplier,
     int__uss_bridge__parts._pit_hook__part,
     int__uss_bridge__suppliers._pit_hook__supplier,
-    int__uss_bridge__suppliers._pit_hook__nation,
-    int__uss_bridge__suppliers._pit_hook__region,
+    int__uss_bridge__suppliers._pit_hook__nation__supplier,
+    int__uss_bridge__suppliers._pit_hook__region__supplier,
     GREATEST(
       bag__tpch__part_suppliers.part_supplier__loaded_at,
       int__uss_bridge__parts.bridge__loaded_at,
