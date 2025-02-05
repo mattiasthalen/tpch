@@ -6,9 +6,7 @@ MODEL (
 
 WITH customers AS (
   SELECT
-    bag__tpch__customers._pit_hook__customer,
     bag__tpch__customers._hook__customer,
-    bag__tpch__customers._hook__nation,
     bag__tpch__customers.customer__name,
     bag__tpch__customers.customer__address,
     bag__tpch__customers.customer__phone,
@@ -46,6 +44,7 @@ WITH customers AS (
     AND bag__tpch__customers.customer__valid_to > bag__tpch__regions.region__valid_from
 )
 SELECT
+  CONCAT(_hook__customer::TEXT, '~valid_from|', customer__valid_from)::BLOB AS _pit_hook__customer,
   *
 FROM customers
 WHERE

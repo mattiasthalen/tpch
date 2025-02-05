@@ -6,7 +6,6 @@ MODEL (
 
 WITH suppliers AS (
   SELECT
-    bag__tpch__suppliers._pit_hook__supplier,
     bag__tpch__suppliers._hook__supplier,
     bag__tpch__suppliers._hook__nation,
     bag__tpch__suppliers.supplier__name,
@@ -45,6 +44,7 @@ WITH suppliers AS (
     AND bag__tpch__suppliers.supplier__valid_to > bag__tpch__regions.region__valid_from
 )
 SELECT
+CONCAT(_hook__supplier::TEXT, '~valid_from|', supplier__valid_from)::BLOB AS _pit_hook__supplier,
   *
 FROM suppliers
 WHERE
