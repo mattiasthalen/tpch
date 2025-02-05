@@ -108,10 +108,12 @@ flowchart LR
     bag__tpch__parts --> parts
     int__customers --> customers
     int__suppliers --> suppliers
-    int__uss_bridge --> _bridge__as_is
     int__uss_bridge --> _bridge__as_of
-    int__uss_bridge --> _bridge__as_of_event
     int__uss_bridge --> calendar
+
+    %% tpch.gold -> tpch.gold
+    _bridge__as_of --> _bridge__as_is
+    _bridge__as_of --> _bridge__as_of_event
     
     linkStyle default stroke:#666,stroke-width:2px
 

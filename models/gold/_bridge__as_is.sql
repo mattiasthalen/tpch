@@ -1,7 +1,5 @@
 MODEL (
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column bridge__loaded_at
-  )
+  kind VIEW
 );
 
 SELECT
@@ -21,8 +19,7 @@ SELECT
   bridge__valid_from,
   bridge__valid_to,
   bridge__is_current
-FROM silver.int__uss_bridge
+FROM gold._bridge__as_of
 WHERE
   1 = 1
   AND bridge__is_current = true
-  AND bridge__loaded_at BETWEEN @start_ts AND @end_ts
