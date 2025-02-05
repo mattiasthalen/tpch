@@ -25,4 +25,6 @@ SELECT
   bridge__is_current
 FROM silver.int__uss_bridge
 WHERE
-  bridge__loaded_at BETWEEN @start_ts AND @end_ts
+  1 = 1
+  AND bridge__is_current = true
+  AND bridge__loaded_at BETWEEN @start_ts AND @end_ts
