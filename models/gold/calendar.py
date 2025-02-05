@@ -241,7 +241,11 @@ def execute(
     
     # Load data
     table = context.resolve_table("tpch.silver.int__uss_bridge")
-    source_df = pl.from_pandas(context.fetchdf(f"SELECT {date_key} FROM {table} WHERE _hook__calendar__date IS NOT NULL"))
+    source_df = pl.from_pandas(context.fetchdf(f"SELECT DISTINCT {date_key} FROM {table}"))
+    
+    # Early exit if empty, e.g., during first plan
+    if source_df.height == 0:
+        return None
     
     # Extract the prefix and value from the date key
     source_df = source_df.with_columns(
