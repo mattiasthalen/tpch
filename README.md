@@ -46,9 +46,13 @@ flowchart LR
 
     subgraph tpch.gold["tpch.gold"]
         direction LR
-        _bridge__as_is(["_bridge__as_is"])
-        _bridge__as_of(["_bridge__as_of"])
-        _bridge__as_of_event(["_bridge__as_of_event"])
+        
+        subgraph bridges
+            _bridge__as_is(["_bridge__as_is"])
+            _bridge__as_of(["_bridge__as_of"])
+            _bridge__as_of_event(["_bridge__as_of_event"])
+        end
+        
         calendar(["calendar"])
         customers(["customers"])
         line_items(["line_items"])
@@ -182,6 +186,7 @@ flowchart LR
     class int__uss_bridge__suppliers silver_light
     
     class tpch.gold gold_classic
+    class bridges gold_light
     class _bridge__as_is gold_dark
     class _bridge__as_of gold_dark
     class _bridge__as_of_event gold_dark
