@@ -29,14 +29,14 @@ flowchart LR
         bag__tpch__parts(["bag__tpch__parts"])
         bag__tpch__regions(["bag__tpch__regions"])
         bag__tpch__suppliers(["bag__tpch__suppliers"])
+        int__customers(["int__customers"])
+        int__suppliers(["int__suppliers"])
         int__uss_bridge(["int__uss_bridge"])
         int__uss_bridge__customers(["int__uss_bridge__customers"])
         int__uss_bridge__line_items(["int__uss_bridge__line_items"])
-        int__uss_bridge__nations(["int__uss_bridge__nations"])
         int__uss_bridge__orders(["int__uss_bridge__orders"])
         int__uss_bridge__part_suppliers(["int__uss_bridge__part_suppliers"])
         int__uss_bridge__parts(["int__uss_bridge__parts"])
-        int__uss_bridge__regions(["int__uss_bridge__regions"])
         int__uss_bridge__suppliers(["int__uss_bridge__suppliers"])
     end
 
@@ -48,11 +48,9 @@ flowchart LR
         calendar(["calendar"])
         customers(["customers"])
         line_items(["line_items"])
-        nations(["nations"])
         orders(["orders"])
         part_suppliers(["part_suppliers"])
         parts(["parts"])
-        regions(["regions"])
         suppliers(["suppliers"])
     end
 
@@ -77,42 +75,39 @@ flowchart LR
     snp__tpch__suppliers --> bag__tpch__suppliers
 
     %% tpch.silver -> tpch.silver
-    bag__tpch__customers --> int__uss_bridge__customers
+    bag__tpch__customers --> int__customers
     bag__tpch__line_items --> int__uss_bridge__line_items
-    bag__tpch__nations --> int__uss_bridge__nations
+    bag__tpch__nations --> int__customers
+    bag__tpch__nations --> int__suppliers
     bag__tpch__orders --> int__uss_bridge__line_items
     bag__tpch__orders --> int__uss_bridge__orders
     bag__tpch__part_suppliers --> int__uss_bridge__part_suppliers
     bag__tpch__parts --> int__uss_bridge__parts
-    bag__tpch__regions --> int__uss_bridge__regions
-    bag__tpch__suppliers --> int__uss_bridge__suppliers
+    bag__tpch__regions --> int__customers
+    bag__tpch__regions --> int__suppliers
+    bag__tpch__suppliers --> int__suppliers
+    int__customers --> int__uss_bridge__customers
+    int__suppliers --> int__uss_bridge__suppliers
     int__uss_bridge__customers --> int__uss_bridge
     int__uss_bridge__customers --> int__uss_bridge__orders
     int__uss_bridge__line_items --> int__uss_bridge
-    int__uss_bridge__nations --> int__uss_bridge
-    int__uss_bridge__nations --> int__uss_bridge__customers
-    int__uss_bridge__nations --> int__uss_bridge__suppliers
     int__uss_bridge__orders --> int__uss_bridge
     int__uss_bridge__orders --> int__uss_bridge__line_items
     int__uss_bridge__part_suppliers --> int__uss_bridge
     int__uss_bridge__parts --> int__uss_bridge
     int__uss_bridge__parts --> int__uss_bridge__line_items
     int__uss_bridge__parts --> int__uss_bridge__part_suppliers
-    int__uss_bridge__regions --> int__uss_bridge
-    int__uss_bridge__regions --> int__uss_bridge__nations
     int__uss_bridge__suppliers --> int__uss_bridge
     int__uss_bridge__suppliers --> int__uss_bridge__line_items
     int__uss_bridge__suppliers --> int__uss_bridge__part_suppliers
 
     %% tpch.silver -> tpch.gold
-    bag__tpch__customers --> customers
     bag__tpch__line_items --> line_items
-    bag__tpch__nations --> nations
     bag__tpch__orders --> orders
     bag__tpch__part_suppliers --> part_suppliers
     bag__tpch__parts --> parts
-    bag__tpch__regions --> regions
-    bag__tpch__suppliers --> suppliers
+    int__customers --> customers
+    int__suppliers --> suppliers
     int__uss_bridge --> _bridge__as_is
     int__uss_bridge --> _bridge__as_of
     int__uss_bridge --> _bridge__as_of_event
@@ -167,6 +162,9 @@ flowchart LR
     class bag__tpch__regions silver_dark
     class bag__tpch__suppliers silver_dark
     
+    class int__customers silver_antique
+    class int__suppliers silver_antique
+
     class int__uss_bridge silver_light
     class int__uss_bridge__customers silver_light
     class int__uss_bridge__line_items silver_light

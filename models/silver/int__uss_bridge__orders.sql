@@ -9,8 +9,6 @@ WITH orders AS (
     bag__tpch__orders._hook__order,
     bag__tpch__orders._pit_hook__order,
     int__uss_bridge__customers._pit_hook__customer,
-    int__uss_bridge__customers._pit_hook__nation__customer,
-    int__uss_bridge__customers._pit_hook__region__customer,
     GREATEST(
       bag__tpch__orders.order__loaded_at,
       int__uss_bridge__customers.bridge__loaded_at

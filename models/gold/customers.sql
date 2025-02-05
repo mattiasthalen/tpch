@@ -12,13 +12,14 @@ SELECT
   customer__acctount_balance,
   customer__market_segment,
   customer__comment,
-  customer__hash_diff,
+  customer__nation__name,
+  customer__nation__comment,
+  customer__region__name,
+  customer__region__comment,
   customer__loaded_at,
-  customer__version,
   customer__valid_from,
   customer__valid_to,
-  customer__is_current,
-  customer__record_source
-FROM silver.bag__tpch__customers
+  customer__is_current
+FROM silver.int__customers
 WHERE
   customer__loaded_at BETWEEN @start_ts AND @end_ts

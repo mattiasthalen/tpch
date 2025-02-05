@@ -11,13 +11,14 @@ SELECT
   supplier__phone,
   supplier__acctount_balance,
   supplier__comment,
-  supplier__hash_diff,
+  supplier__nation__name,
+  supplier__nation__comment,
+  supplier__region__name,
+  supplier__region__comment,
   supplier__loaded_at,
-  supplier__version,
   supplier__valid_from,
   supplier__valid_to,
-  supplier__is_current,
-  supplier__record_source
-FROM silver.bag__tpch__suppliers
+  supplier__is_current
+FROM silver.int__suppliers
 WHERE
   supplier__loaded_at BETWEEN @start_ts AND @end_ts
