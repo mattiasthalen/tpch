@@ -223,29 +223,65 @@ flowchart LR
     raw__tpch__suppliers --> raw__tpch__nations
     raw__tpch__part_suppliers --> raw__tpch__suppliers
     raw__tpch__part_suppliers --> raw__tpch__parts
+
+    %% Bronze shades
+    classDef bronze_classic fill:#CD7F32,color:white
+    classDef bronze_dark fill:#B87333,color:white
+    classDef bronze_light fill:#E09756,color:white
+    classDef bronze_antique fill:#966B47,color:white
+
+    class raw__tpch__customers bronze_dark
+    class raw__tpch__line_items bronze_dark
+    class raw__tpch__nations bronze_dark
+    class raw__tpch__orders bronze_dark
+    class raw__tpch__part_suppliers bronze_dark
+    class raw__tpch__parts bronze_dark
+    class raw__tpch__regions bronze_dark
+    class raw__tpch__suppliers bronze_dark
 ```
 
 ### Silver
 ```mermaid
 flowchart LR
     %% Relations
-    bag__tpch__regions("bag__tpch__regions") --> _hook__region(["_hook__region"]):::hook
-    bag__tpch__nations("bag__tpch__nations") --> _hook__region(["_hook__region"]):::hook
-    bag__tpch__nations("bag__tpch__nations") --> _hook__nation(["_hook__nation"]):::hook
-    bag__tpch__part_suppliers("bag__tpch__part_suppliers") --> _hook__part_supplier(["_hook__part_supplier"]):::hook
-    bag__tpch__line_items("bag__tpch__line_items") ----> _hook__order(["_hook__order"]):::hook
-    bag__tpch__line_items("bag__tpch__line_items") --> _hook__part_supplier(["_hook__part_supplier"]):::hook
-    bag__tpch__part_suppliers("bag__tpch__part_suppliers") ----> _hook__supplier(["_hook__supplier"]):::hook
-    bag__tpch__customers("bag__tpch__customers") ---> _hook__nation(["_hook__nation"]):::hook
-    bag__tpch__customers("bag__tpch__customers") --> _hook__customer(["_hook__customer"]):::hook
-    bag__tpch__orders("bag__tpch__orders") --> _hook__customer(["_hook__customer"]):::hook
-    bag__tpch__orders("bag__tpch__orders") --> _hook__order(["_hook__order"]):::hook
-    bag__tpch__suppliers("bag__tpch__suppliers") ----> _hook__nation(["_hook__nation"]):::hook
-    bag__tpch__suppliers("bag__tpch__suppliers") --> _hook__supplier(["_hook__supplier"]):::hook
-    bag__tpch__part_suppliers("bag__tpch__part_suppliers") --> _hook__part(["_hook__part"]):::hook
-    bag__tpch__parts("bag__tpch__parts") --> _hook__part(["_hook__part"]):::hook
-    
-    classDef hook fill:#4A915E,color:white
+    bag__tpch__regions("bag__tpch__regions") --> _hook__region(["_hook__region"])
+    bag__tpch__nations("bag__tpch__nations") --> _hook__region(["_hook__region"])
+    bag__tpch__nations("bag__tpch__nations") --> _hook__nation(["_hook__nation"])
+    bag__tpch__part_suppliers("bag__tpch__part_suppliers") --> _hook__part_supplier(["_hook__part_supplier"])
+    bag__tpch__line_items("bag__tpch__line_items") ----> _hook__order(["_hook__order"])
+    bag__tpch__line_items("bag__tpch__line_items") --> _hook__part_supplier(["_hook__part_supplier"])
+    bag__tpch__part_suppliers("bag__tpch__part_suppliers") ----> _hook__supplier(["_hook__supplier"])
+    bag__tpch__customers("bag__tpch__customers") ---> _hook__nation(["_hook__nation"])
+    bag__tpch__customers("bag__tpch__customers") --> _hook__customer(["_hook__customer"])
+    bag__tpch__orders("bag__tpch__orders") --> _hook__customer(["_hook__customer"])
+    bag__tpch__orders("bag__tpch__orders") --> _hook__order(["_hook__order"])
+    bag__tpch__suppliers("bag__tpch__suppliers") ----> _hook__nation(["_hook__nation"])
+    bag__tpch__suppliers("bag__tpch__suppliers") --> _hook__supplier(["_hook__supplier"])
+    bag__tpch__part_suppliers("bag__tpch__part_suppliers") --> _hook__part(["_hook__part"])
+    bag__tpch__parts("bag__tpch__parts") --> _hook__part(["_hook__part"])
+
+    %% Silver shades
+    classDef silver_classic fill:#C0C0C0,color:black
+    classDef silver_dark fill:#A8A8A8,color:black
+    classDef silver_light fill:#D8D8D8,color:black
+    classDef silver_antique fill:#B4B4B4,color:black
+
+    class bag__tpch__customers silver_dark
+    class bag__tpch__line_items silver_dark
+    class bag__tpch__nations silver_dark
+    class bag__tpch__orders silver_dark
+    class bag__tpch__part_suppliers silver_dark
+    class bag__tpch__parts silver_dark
+    class bag__tpch__regions silver_dark
+    class bag__tpch__suppliers silver_dark
+
+    class _hook__customer silver_light
+    class _hook__nation silver_light
+    class _hook__order silver_light
+    class _hook__part silver_light
+    class _hook__part_supplier silver_light
+    class _hook__region silver_light
+    class _hook__supplier silver_light
 ```
 
 ### Gold
