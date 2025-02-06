@@ -1,22 +1,24 @@
 MODEL (
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column region__loaded_at
-  )
+  kind VIEW
 );
+
+@DEF(primary_key := r_regionkey)
 
 WITH source AS (
   SELECT
-    *,
+  * EXCLUDE(_sqlmesh__valid_from, _sqlmesh__valid_to),
     'tpch' AS _sqlmesh__record_source
   FROM bronze.snp__tpch__regions
-), validity AS (
-  SELECT
-    *
-    EXCLUDE (_sqlmesh__valid_to),
-    ROW_NUMBER() OVER (PARTITION BY r_regionkey ORDER BY _sqlmesh__valid_from) AS _sqlmesh__version,
-    COALESCE(_sqlmesh__valid_to, '9999-12-31 23:59:59'::TIMESTAMP) AS _sqlmesh__valid_to,
-    _sqlmesh__valid_to = '9999-12-31 23:59:59'::TIMESTAMP AS _sqlmesh__is_current
-  FROM source
+  ), validity AS (
+    SELECT
+      *
+      ROW_NUMBER() OVER (PARTITION BY @primary_key ORDER BY _sqlmesh__loaded_at) AS _sqlmesh__version,
+      _sqlmesh__loaded_at AS _sqlmesh__valid_from,
+      COALESCE(
+          LEAD(_sqlmesh__valid_to) OVER (PARTITION BY @primary_key, ORDER BY _sqlmesh__loaded_at),
+      '9999-12-31 23:59:59'::TIMESTAMP) AS _sqlmesh__valid_to,
+      _sqlmesh__valid_to = '9999-12-31 23:59:59'::TIMESTAMP AS _sqlmesh__is_current
+    FROM source
 ), final AS (
   SELECT
     CONCAT(
@@ -42,5 +44,3 @@ WITH source AS (
 SELECT
   *
 FROM final
-WHERE
-  region__loaded_at BETWEEN @start_ts AND @end_ts

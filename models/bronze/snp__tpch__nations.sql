@@ -1,10 +1,10 @@
 MODEL (
   kind SCD_TYPE_2_BY_COLUMN (
-    unique_key n_nationkey,
+    unique_key _sqlmesh__hash_diff,
     valid_from_name _sqlmesh__valid_from,
     valid_to_name _sqlmesh__valid_to,
     columns [_sqlmesh__hash_diff],
-    disable_restatement TRUE
+    disable_restatement FALSE
   )
 );
 
