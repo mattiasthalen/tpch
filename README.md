@@ -228,49 +228,23 @@ flowchart LR
 ### Silver
 ```mermaid
 flowchart LR
-    %% Bags
-    bag__tpch__customers("bag__tpch__customers")
-    bag__tpch__nations("bag__tpch__nations")
-    bag__tpch__line_items("bag__tpch__line_items")
-    bag__tpch__orders("bag__tpch__orders")
-    bag__tpch__part_suppliers("bag__tpch__part_suppliers")
-    bag__tpch__parts("bag__tpch__parts")
-    bag__tpch__regions("bag__tpch__regions")
-    bag__tpch__suppliers("bag__tpch__suppliers")
-
-    %% Hooks
-    _hook__order(["_hook__order"]):::hook
-    _hook__customer(["_hook__customer"]):::hook
-    _hook__part(["_hook__part"]):::hook
-    _hook__supplier(["_hook__supplier"]):::hook
-    _hook__region(["_hook__region"]):::hook
-    _hook__nation(["_hook__nation"]):::hook
-    _hook__line_item(["_hook__line_item"]):::hook
-    _hook__part_supplier(["_hook__part_supplier"]):::hook
-
     %% Relations
-    bag__tpch__line_items -->_hook__line_item
-    bag__tpch__line_items --> _hook__order
-    bag__tpch__orders --> _hook__order
-    bag__tpch__orders --> _hook__customer
-    bag__tpch__customers --> _hook__customer
-    bag__tpch__customers --> _hook__nation
-    bag__tpch__nations --> _hook__nation
-    bag__tpch__nations --> _hook__region
-    bag__tpch__regions --> _hook__region
-
-    bag__tpch__line_items -->_hook__part_supplier
-    bag__tpch__part_suppliers --> _hook__part_supplier
-    bag__tpch__part_suppliers --> _hook__supplier
-    bag__tpch__part_suppliers --> _hook__part
-
-    bag__tpch__suppliers --> _hook__supplier
-    bag__tpch__line_items --> _hook__supplier
-    bag__tpch__parts --> _hook__part
-    bag__tpch__line_items --> _hook__part
-
-    bag__tpch__suppliers --> _hook__nation
-
+    bag__tpch__regions("bag__tpch__regions") --> _hook__region(["_hook__region"]):::hook
+    bag__tpch__nations("bag__tpch__nations") --> _hook__region(["_hook__region"]):::hook
+    bag__tpch__nations("bag__tpch__nations") --> _hook__nation(["_hook__nation"]):::hook
+    bag__tpch__part_suppliers("bag__tpch__part_suppliers") --> _hook__part_supplier(["_hook__part_supplier"]):::hook
+    bag__tpch__line_items("bag__tpch__line_items") ----> _hook__order(["_hook__order"]):::hook
+    bag__tpch__line_items("bag__tpch__line_items") --> _hook__part_supplier(["_hook__part_supplier"]):::hook
+    bag__tpch__part_suppliers("bag__tpch__part_suppliers") ----> _hook__supplier(["_hook__supplier"]):::hook
+    bag__tpch__customers("bag__tpch__customers") ---> _hook__nation(["_hook__nation"]):::hook
+    bag__tpch__customers("bag__tpch__customers") --> _hook__customer(["_hook__customer"]):::hook
+    bag__tpch__orders("bag__tpch__orders") --> _hook__customer(["_hook__customer"]):::hook
+    bag__tpch__orders("bag__tpch__orders") --> _hook__order(["_hook__order"]):::hook
+    bag__tpch__suppliers("bag__tpch__suppliers") ----> _hook__nation(["_hook__nation"]):::hook
+    bag__tpch__suppliers("bag__tpch__suppliers") --> _hook__supplier(["_hook__supplier"]):::hook
+    bag__tpch__part_suppliers("bag__tpch__part_suppliers") --> _hook__part(["_hook__part"]):::hook
+    bag__tpch__parts("bag__tpch__parts") --> _hook__part(["_hook__part"]):::hook
+    
     classDef hook fill:#4A915E,color:white
 ```
 
