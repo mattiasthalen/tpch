@@ -202,7 +202,7 @@ flowchart LR
     class suppliers gold_light
 ```
 
-## ERDs
+## ERDs - Oriented Data Models
 ### Bronze
 ```mermaid
 flowchart LR
