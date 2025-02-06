@@ -277,7 +277,13 @@ flowchart LR
 ### Gold
 ```mermaid
 flowchart LR
-    _bridge("_bridge")
+    subgraph bridges
+        direction LR
+        _bridge__as_of(["_bridge__as_of"])
+        _bridge__as_is(["_bridge__as_is"])
+        _bridge__as_of_event(["_bridge__as_of_event"])
+    end
+
     customers(["customers"])
     orders(["orders"])
     line_items(["line_items"])
@@ -285,10 +291,31 @@ flowchart LR
     parts(["parts"])
     suppliers(["suppliers"])
     
-    _bridge --> customers
-    _bridge --> orders
-    _bridge --> line_items
-    _bridge --> part_suppliers
-    _bridge --> parts
-    _bridge --> suppliers
+    bridges --> customers
+    bridges --> orders
+    bridges --> line_items
+    bridges --> part_suppliers
+    bridges --> parts
+    bridges --> suppliers
+
+    %% Gold shades
+    classDef gold_classic fill:#FFD700,color:black
+    classDef gold_dark fill:#DAA520,color:black
+    classDef gold_light fill:#FFE55C,color:black
+    classDef gold_antique fill:#CFB53B,color:black
+
+    class bridges gold_light
+    class _bridge__as_is gold_dark
+    class _bridge__as_of gold_dark
+    class _bridge__as_of_event gold_dark
+    
+    class calendar gold_light
+    class customers gold_light
+    class line_items gold_light
+    class nations gold_light
+    class orders gold_light
+    class part_suppliers gold_light
+    class parts gold_light
+    class regions gold_light
+    class suppliers gold_light
 ```
