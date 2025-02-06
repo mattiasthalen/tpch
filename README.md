@@ -216,8 +216,7 @@ flowchart LR
     raw__tpch__suppliers(["raw__tpch__suppliers"])
 
     raw__tpch__line_items --> raw__tpch__orders
-    raw__tpch__line_items --> raw__tpch__parts
-    raw__tpch__line_items --> raw__tpch__suppliers
+    raw__tpch__line_items --> raw__tpch__part_suppliers
     raw__tpch__orders --> raw__tpch__customers
     raw__tpch__customers --> raw__tpch__nations
     raw__tpch__nations --> raw__tpch__regions
@@ -261,16 +260,15 @@ flowchart LR
     bag__tpch__nations --> _hook__region
     _hook__region --> bag__tpch__regions
 
-    bag__tpch__line_items -->_hook__part
-    _hook__part --> bag__tpch__parts
-
-    bag__tpch__line_items --> _hook__supplier
-    _hook__supplier --> bag__tpch__suppliers
-    bag__tpch__suppliers --> _hook__nation
-
+    bag__tpch__line_items -->_hook__part_supplier
     _hook__part_supplier --> bag__tpch__part_suppliers
     bag__tpch__part_suppliers --> _hook__supplier
     bag__tpch__part_suppliers --> _hook__part
+
+    _hook__supplier --> bag__tpch__suppliers
+    _hook__part --> bag__tpch__parts
+
+    bag__tpch__suppliers --> _hook__nation
 
     classDef hook fill:#4A915E,color:white
 ```

@@ -31,6 +31,7 @@ WITH source AS (
     CONCAT('order|', _sqlmesh__record_source, '|', l_orderkey)::BLOB AS _hook__order,
     CONCAT('part|', _sqlmesh__record_source, '|', l_partkey)::BLOB AS _hook__part,
     CONCAT('supplier|', _sqlmesh__record_source, '|', l_suppkey)::BLOB AS _hook__supplier,
+    CONCAT(_hook__part::TEXT, '~', _hook__supplier::TEXT)::BLOB AS _hook__part_supplier,
     l_linenumber AS line_item__line_number,
     l_quantity AS line_item__quantity,
     l_extendedprice AS line_item__extended_price,

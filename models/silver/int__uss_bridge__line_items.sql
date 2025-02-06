@@ -10,39 +10,33 @@ WITH line_items AS (
     bag__tpch__line_items._pit_hook__line_item,
     int__uss_bridge__orders._pit_hook__order,
     int__uss_bridge__orders._pit_hook__customer,
-    int__uss_bridge__parts._pit_hook__part,
-    int__uss_bridge__suppliers._pit_hook__supplier,
+    int__uss_bridge__part_suppliers._pit_hook__part_supplier,
+    int__uss_bridge__part_suppliers._pit_hook__part,
+    int__uss_bridge__part_suppliers._pit_hook__supplier,
     GREATEST(
       bag__tpch__line_items.line_item__loaded_at,
       int__uss_bridge__orders.bridge__loaded_at,
-      int__uss_bridge__parts.bridge__loaded_at,
-      int__uss_bridge__suppliers.bridge__loaded_at
+      int__uss_bridge__part_suppliers.bridge__loaded_at
     ) AS bridge__loaded_at,
     GREATEST(
       bag__tpch__line_items.line_item__valid_from,
       int__uss_bridge__orders.bridge__valid_from,
-      int__uss_bridge__parts.bridge__valid_from,
-      int__uss_bridge__suppliers.bridge__valid_from
+      int__uss_bridge__part_suppliers.bridge__valid_from
     ) AS bridge__valid_from,
     LEAST(
       bag__tpch__line_items.line_item__valid_to,
       int__uss_bridge__orders.bridge__valid_to,
-      int__uss_bridge__parts.bridge__valid_to,
-      int__uss_bridge__suppliers.bridge__valid_to
+      int__uss_bridge__part_suppliers.bridge__valid_to
     ) AS bridge__valid_to
   FROM silver.bag__tpch__line_items
   LEFT JOIN silver.int__uss_bridge__orders
     ON bag__tpch__line_items._hook__order = int__uss_bridge__orders._hook__order
     AND bag__tpch__line_items.line_item__valid_from < int__uss_bridge__orders.bridge__valid_to
     AND bag__tpch__line_items.line_item__valid_to > int__uss_bridge__orders.bridge__valid_from
-  LEFT JOIN silver.int__uss_bridge__parts
-    ON bag__tpch__line_items._hook__part = int__uss_bridge__parts._hook__part
-    AND bag__tpch__line_items.line_item__valid_from < int__uss_bridge__parts.bridge__valid_to
-    AND bag__tpch__line_items.line_item__valid_to > int__uss_bridge__parts.bridge__valid_from
-  LEFT JOIN silver.int__uss_bridge__suppliers
-    ON bag__tpch__line_items._hook__supplier = int__uss_bridge__suppliers._hook__supplier
-    AND bag__tpch__line_items.line_item__valid_from < int__uss_bridge__suppliers.bridge__valid_to
-    AND bag__tpch__line_items.line_item__valid_to > int__uss_bridge__suppliers.bridge__valid_from
+  LEFT JOIN silver.int__uss_bridge__part_suppliers
+    ON bag__tpch__line_items._hook__part_supplier = int__uss_bridge__part_suppliers._hook__part_supplier
+    AND bag__tpch__line_items.line_item__valid_from < int__uss_bridge__part_suppliers.bridge__valid_to
+    AND bag__tpch__line_items.line_item__valid_to > int__uss_bridge__part_suppliers.bridge__valid_from
 ), order__order_date AS (
   SELECT
     line_items.*,
@@ -81,6 +75,7 @@ WITH line_items AS (
     _pit_hook__line_item,
     _pit_hook__order,
     _pit_hook__customer,
+    _pit_hook__part_supplier,
     _pit_hook__part,
     _pit_hook__supplier,
     CONCAT('calendar|date|', event_date) AS _hook__calendar__date,
