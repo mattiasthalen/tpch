@@ -211,9 +211,9 @@ flowchart LR
     raw__tpch__nations(["raw__tpch__nations"])
     raw__tpch__orders(["raw__tpch__orders"])
     raw__tpch__part_suppliers(["raw__tpch__part_suppliers"])
-    raw__tpch__parts(["raw__tpch__parts"])
     raw__tpch__regions(["raw__tpch__regions"])
     raw__tpch__suppliers(["raw__tpch__suppliers"])
+    raw__tpch__parts(["raw__tpch__parts"])
 
     raw__tpch__line_items --> raw__tpch__orders
     raw__tpch__line_items --> raw__tpch__part_suppliers
@@ -221,8 +221,8 @@ flowchart LR
     raw__tpch__customers --> raw__tpch__nations
     raw__tpch__nations --> raw__tpch__regions
     raw__tpch__suppliers --> raw__tpch__nations
-    raw__tpch__part_suppliers --> raw__tpch__parts
     raw__tpch__part_suppliers --> raw__tpch__suppliers
+    raw__tpch__part_suppliers --> raw__tpch__parts
 ```
 
 ### Silver
